@@ -17,7 +17,7 @@ public final class Hero extends Entity {
      * The user provided armor strength
      */
     private final int armorStrength;
-
+    
     /**
      * A Hero has regular health and symbol as well as a weapon strength and armor strength
      *

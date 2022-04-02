@@ -6,6 +6,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
+ * Dylan (Niem Nguyen) Luc (UCID: 30132429)
+ * CPSC 233 Intro CPSC for CPSC Majors II
+ * Lab 03
+ * Instructor: Jonathan Hudson
+ * TA: Sarthak
+ * 1st April 2022
+ */
+/**
  * A World is a 2D grid of entities, null Spots are floor spots
  *
  * @author Jonathan Hudson
@@ -240,8 +248,30 @@ public class World {
         for (int i = 0; i < getColumns() + 2; i++) {
             s = s + "#";
         }
-        return s+"\n";
+        return s + "\n";
     }
 
-
+    public String worldText() {
+        String s = "";
+        s = s + this.getRows() + "\n";
+        s = s + this.getColumns() + "\n";
+        for (int i = 0; i < getRows(); i++) {
+            for (int j = 0; j < getColumns(); j++) {
+                if (this.world[i][j] == null) {
+                    s = s + i + "," + j + "\n";
+                } else if (isHero(i, j)) {
+                    s = s + i + "," + j + "," + "HERO" + "," + this.world[i][j].getSymbol() + "," + this.world[i][j].getHealth() + "," +this.world[i][j].weaponStrength()+"," + this.world[i][j].armorStrength() + "\n";
+                } else if (isMonster(i, j)) {
+                    if (this.world[i][j].weaponStrength() == 4) {
+                        s = s + i + "," + j + "," + "Monster" + "," + this.world[i][j].getSymbol() + "," + this.world[i][j].getHealth() + "," + "S\n";
+                    } else if (this.world[i][j].weaponStrength() == 3) {
+                        s = s + i + "," + j + "," + "Monster" + "," + this.world[i][j].getSymbol() + "," + this.world[i][j].getHealth() + "," + "A\n";
+                    } else if ((this.world[i][j].weaponStrength() == 2)) {
+                        s = s + i + "," + j + "," + "Monster" + "," + this.world[i][j].getSymbol() + "," + this.world[i][j].getHealth() + "," + "C\n";
+                    }
+                }
+            }
+        }
+        return s + "\n";
+    }
 }

@@ -58,8 +58,7 @@
         <Menu mnemonicParsing="false" text="File">
           <items>
             <MenuItem mnemonicParsing="false" onAction="#Load" text="Load" />
-            <MenuItem mnemonicParsing="false" text="Save" />
-            <MenuItem mnemonicParsing="false" text="Save As…" />
+            <MenuItem mnemonicParsing="false" onAction="#saveAction" text="Save As" />
             <MenuItem mnemonicParsing="false" onAction="#Quit" text="Quit" />
           </items>
         </Menu>
@@ -74,90 +73,104 @@
       <items>
         <AnchorPane>
           <children>
-                  <Text layoutX="21.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rows">
+                  <Text layoutX="21.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rows">
                      <font>
                         <Font name="Monospaced Regular" size="18.0" />
                      </font>
                   </Text>
-                  <Text layoutX="20.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Columns">
+                  <Text layoutX="20.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Columns">
                      <font>
                         <Font name="Monospaced Regular" size="18.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="number_row" layoutX="101.0" layoutY="52.0" prefHeight="26.0" prefWidth="123.0" />
-                  <TextField fx:id="number_column" layoutX="101.0" layoutY="81.0" prefHeight="26.0" prefWidth="123.0" />
-                  <Button layoutX="47.0" layoutY="116.0" mnemonicParsing="false" onMouseClicked="#Create_new_world" text="Create New World">
+                  <TextField fx:id="number_row" layoutX="101.0" layoutY="24.0" prefHeight="26.0" prefWidth="123.0" />
+                  <TextField fx:id="number_column" layoutX="101.0" layoutY="53.0" prefHeight="26.0" prefWidth="123.0" />
+                  <Button layoutX="47.0" layoutY="88.0" mnemonicParsing="false" onMouseClicked="#Create_new_world" text="Create New World">
                      <font>
                         <Font name="Monospaced Regular" size="12.0" />
                      </font>
                   </Button>
-                  <Text layoutX="20.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WORLD">
+                  <Text layoutX="20.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WORLD">
                      <font>
                         <Font name="Monospaced Bold" size="15.0" />
                      </font>
                   </Text>
-                  <Text layoutX="20.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MONSTER">
+                  <Text layoutX="20.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MONSTER">
                      <font>
                         <Font name="Monospaced Bold" size="15.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="monster_symbol" layoutX="101.0" layoutY="166.0" prefHeight="26.0" prefWidth="123.0" />
-                  <TextField fx:id="monster_health" layoutX="101.0" layoutY="195.0" prefHeight="26.0" prefWidth="123.0" />
-                  <Text layoutX="21.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Symbol">
+                  <TextField fx:id="monster_symbol" layoutX="101.0" layoutY="152.0" prefHeight="26.0" prefWidth="123.0" />
+                  <TextField fx:id="monster_health" layoutX="101.0" layoutY="181.0" prefHeight="26.0" prefWidth="123.0" />
+                  <Text layoutX="21.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Symbol">
                      <font>
                         <Font name="Monospaced Regular" size="18.0" />
                      </font>
                   </Text>
-                  <Text layoutX="20.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Health">
+                  <Text layoutX="20.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Health">
                      <font>
                         <Font name="Monospaced Regular" size="18.0" />
                      </font>
                   </Text>
-                  <Text layoutX="21.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Weapon">
+                  <Text layoutX="21.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Weapon">
                      <font>
                         <Font name="Monospaced Regular" size="18.0" />
                      </font>
                   </Text>
-                  <ChoiceBox fx:id="weapon_status" layoutX="101.0" layoutY="225.0" prefHeight="26.0" prefWidth="123.0" />
-                  <Button layoutX="47.0" layoutY="263.0" mnemonicParsing="false" onMouseClicked="#Create_a_monster" text="Create A Monster">
+                  <ChoiceBox fx:id="weapon_status" layoutX="101.0" layoutY="211.0" prefHeight="26.0" prefWidth="123.0" />
+                  <Text layoutX="21.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HERO">
+                     <font>
+                        <Font name="Monospaced Bold" size="15.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="hero_symbol" layoutX="102.0" layoutY="345.0" prefHeight="26.0" prefWidth="123.0" />
+                  <TextField fx:id="hero_health" layoutX="102.0" layoutY="374.0" prefHeight="26.0" prefWidth="123.0" />
+                  <Text layoutX="22.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Symbol">
+                     <font>
+                        <Font name="Monospaced Regular" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="21.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Health">
+                     <font>
+                        <Font name="Monospaced Regular" size="18.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="hero_weapon" layoutX="102.0" layoutY="403.0" prefHeight="26.0" prefWidth="123.0" />
+                  <TextField fx:id="hero_armor" layoutX="102.0" layoutY="434.0" prefHeight="26.0" prefWidth="123.0" />
+                  <Text layoutX="23.0" layoutY="422.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Weapon">
+                     <font>
+                        <Font name="Monospaced Regular" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="22.0" layoutY="453.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Armor">
+                     <font>
+                        <Font name="Monospaced Regular" size="18.0" />
+                     </font>
+                  </Text>
+                  <Button layoutX="54.0" layoutY="293.0" mnemonicParsing="false" onAction="#addMonster" onMouseClicked="#addMonster" text="Add Monster">
                      <font>
                         <Font name="Monospaced Regular" size="12.0" />
                      </font>
                   </Button>
-                  <Text layoutX="21.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HERO">
-                     <font>
-                        <Font name="Monospaced Bold" size="15.0" />
-                     </font>
-                  </Text>
-                  <TextField fx:id="hero_symbol" layoutX="102.0" layoutY="316.0" prefHeight="26.0" prefWidth="123.0" />
-                  <TextField fx:id="hero_health" layoutX="102.0" layoutY="345.0" prefHeight="26.0" prefWidth="123.0" />
-                  <Text layoutX="22.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Symbol">
-                     <font>
-                        <Font name="Monospaced Regular" size="18.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="21.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Health">
-                     <font>
-                        <Font name="Monospaced Regular" size="18.0" />
-                     </font>
-                  </Text>
-                  <TextField fx:id="hero_weapon" layoutX="102.0" layoutY="374.0" prefHeight="26.0" prefWidth="123.0" />
-                  <TextField fx:id="hero_armor" layoutX="102.0" layoutY="405.0" prefHeight="26.0" prefWidth="123.0" />
-                  <Text layoutX="23.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Weapon">
-                     <font>
-                        <Font name="Monospaced Regular" size="18.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="22.0" layoutY="424.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Armor">
-                     <font>
-                        <Font name="Monospaced Regular" size="18.0" />
-                     </font>
-                  </Text>
-                  <Button layoutX="47.0" layoutY="440.0" mnemonicParsing="false" onMouseClicked="#Create_a_monster" text="Create A Hero">
+                  <Button layoutX="58.0" layoutY="501.0" mnemonicParsing="false" onMouseClicked="#addHero" text="Add Hero">
                      <font>
                         <Font name="Monospaced Regular" size="12.0" />
                      </font>
                   </Button>
+                  <TextField fx:id="monster_row" layoutX="100.0" layoutY="241.0" prefHeight="26.0" prefWidth="54.0" />
+                  <TextField fx:id="monster_column" layoutX="158.0" layoutY="241.0" prefHeight="26.0" prefWidth="65.0" />
+                  <Text layoutX="23.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R/C">
+                     <font>
+                        <Font name="Monospaced Regular" size="18.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="number_row11" layoutX="101.0" layoutY="465.0" prefHeight="26.0" prefWidth="54.0" />
+                  <TextField fx:id="number_column11" layoutX="159.0" layoutY="465.0" prefHeight="26.0" prefWidth="65.0" />
+                  <Text layoutX="24.0" layoutY="483.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R/C">
+                     <font>
+                        <Font name="Monospaced Regular" size="18.0" />
+                     </font>
+                  </Text>
           </children>
         </AnchorPane>
         <ScrollPane prefHeight="-1.0" prefWidth="-1.0">
@@ -177,7 +190,7 @@
             </AnchorPane>
           </content>
         </ScrollPane>
-        <AnchorPane>
+        <AnchorPane prefHeight="551.0" prefWidth="269.0">
           <children>
                   <Text layoutX="14.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DETAILS">
                      <font>
@@ -186,7 +199,7 @@
                   </Text>
                   <TextArea fx:id="details" editable="false" layoutX="14.0" layoutY="63.0" prefHeight="443.0" prefWidth="192.0">
                      <font>
-                        <Font name="Monospaced Regular" size="18.0" />
+                        <Font name="Monospaced Regular" size="10.0" />
                      </font>
                   </TextArea>
           </children>

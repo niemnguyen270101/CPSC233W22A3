@@ -8,6 +8,15 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Random;
 
+/**
+ * Dylan (Niem Nguyen) Luc (UCID: 30132429)
+ * CPSC 233 Intro CPSC for CPSC Majors II
+ * Lab 03
+ * Instructor: Jonathan Hudson
+ * TA: Sarthak
+ * 1st April 2022
+ */
+
 public class Main extends Application {
 
     public static final String version = "1.0";
