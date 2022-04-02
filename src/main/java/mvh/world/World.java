@@ -274,4 +274,24 @@ public class World {
         }
         return s + "\n";
     }
+    
+    public String sHero (int r, int c){
+        String s = "";
+        s = "Type: Hero\n"+"Symbol: "+this.world[r][c].getSymbol() +"\n"+"Health: "+this.world[r][c].getHealth()+"\n"+"Weapon Strength: "+this.world[r][c].weaponStrength()+"\n"+"Armor Strength: "+ this.world[r][c].armorStrength()+"\n";
+        return s;
+    }
+    
+    public String sMonster (int r, int c){
+        String s = "";
+        String weaponType = "";
+        if (this.world[r][c].weaponStrength() == 2){
+            weaponType = "CLUB";
+        } else if (this.world[r][c].weaponStrength() == 3) {
+            weaponType = "AXE";
+        } else if (this.world[r][c].weaponStrength() == 4) {
+            weaponType = "SWORD";
+        }
+        s = "Type: Monster\n"+"Symbol: "+this.world[r][c].getSymbol()+"\n"+"Health: "+this.world[r][c].getHealth()+"\n"+"Weapon Type: "+ weaponType+"\n"+"Weapon Strength: "+ this.world[r][c].weaponStrength() +"\n";
+        return s;
+    }
 }

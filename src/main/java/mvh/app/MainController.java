@@ -33,14 +33,32 @@ public class MainController {
 
     //Store the data of editor
     private World world;
+    @FXML
+    private TextArea details;
+
+    @FXML
+    private TextField hero_row;
+
+    @FXML
+    private TextField hero_column;
+
+    @FXML
+    private TextField hero_armor;
+
+
+    @FXML
+    private TextField hero_symbol;
+
+    @FXML
+    private TextField hero_weapon;
+
+    @FXML
+    private TextField hero_health;
 
     //Create a list for Monster's weapons
     ObservableList<String> weaponList = FXCollections.observableArrayList("Sword (4)","Axe (3)","Club (2)");
     @FXML
     private TextField monster_health;
-
-    @FXML
-    private TextArea details;
 
     @FXML
     private TextField monster_symbol;
@@ -77,6 +95,19 @@ public class MainController {
     private Color x4;
 
     private String updated_string;
+
+    @FXML
+    private TextField entity_column;
+
+    @FXML
+    private TextField entity_row;
+
+    @FXML
+    private Label rightStatus;
+
+    @FXML
+    private Label leftStatus;
+
     /**
      * Setup the window state
      */
@@ -93,6 +124,7 @@ public class MainController {
      */
     @FXML
     void Create_new_world(MouseEvent event) {
+
         String cc = number_column.getText();
         String rr = number_row.getText();
         int c = Integer.parseInt(cc);
@@ -101,6 +133,8 @@ public class MainController {
         view.appendText(new_World.worldString());
         updated_string = new_World.worldText();
         world = new_World;
+        leftStatus.setText("A new world was created");
+        rightStatus.setText("World drawn");
     }
 
     /**
@@ -160,8 +194,15 @@ public class MainController {
             fileWriter.close();
     }
 
+    /**
+     * add Monster
+     * print details
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void addMonster(ActionEvent event) throws IOException {
+    void addMonster(MouseEvent event) throws IOException  {
+        System.out.println("x");
         String s_r = monster_row.getText();
         String s_c = monster_column.getText();
         int r = Integer.parseInt(s_r);
@@ -170,7 +211,6 @@ public class MainController {
         String s_health = monster_health.getText();
         int health = Integer.parseInt(s_health);
         String s_weapon = weapon_status.getValue();
-        System.out.println(s_weapon);
 
         int weapon_strength = 0;
         String weapon_type = "";
@@ -187,6 +227,8 @@ public class MainController {
             weapon_strength = 2;
             weapon_type = "CLUB";
         }
+
+
         //int health, char symbol, WeaponType weaponType
         Monster monster = new Monster(health, symbol.charAt(0), WeaponType.getWeaponType(s_weapon.charAt(0)));
         world.addEntity(r, c, monster);
@@ -195,7 +237,74 @@ public class MainController {
 
         details.clear();
         details.appendText("Type: Monster\n"+"Symbol: "+symbol+"\n"+"Health: "+health+"\n"+"Weapon Type: "+weapon_type+"\n"+"Weapon Strength: "+ weapon_strength +"\n" );
+        leftStatus.setText("Added a new monster!");
+        rightStatus.setText("World drawn");
     }
 
+    @FXML
+    void addHero(MouseEvent event) throws IOException {
+        //read location
+        String hero_s_r = hero_row.getText();
+        String hero_s_c = monster_column.getText();
+        int hero_r = Integer.parseInt(hero_s_r);
+        int hero_c = Integer.parseInt(hero_s_c);
+
+        //read symbol,health,weapon and armor
+        String s_hero_symbol = hero_symbol.getText();
+
+        String s_hero_health = hero_health.getText();
+        int i_hero_health = Integer.parseInt(s_hero_health);
+
+        String s_hero_weapon = hero_weapon.getText();
+        int i_hero_weapon = Integer.parseInt(s_hero_weapon);
+
+        String s_hero_armor = hero_armor.getText();
+        int i_hero_armor = Integer.parseInt(s_hero_armor);
+
+        //int health, char symbol, int weaponStrength, int armorStrength
+        Hero hero = new Hero(i_hero_health, s_hero_symbol.charAt(0), i_hero_weapon, i_hero_armor);
+        world.addEntity(hero_r, hero_c, hero);
+
+        view.clear();
+        view.appendText(world.worldString());
+
+        details.clear();
+        details.appendText("Type: Hero\n"+"Symbol: "+s_hero_symbol+"\n"+"Health: "+i_hero_health+"\n"+"Weapon Strength: "+i_hero_weapon+"\n"+"Armor Strength: "+ i_hero_armor +"\n");
+        leftStatus.setText("Added a new hero!");
+        rightStatus.setText("World drawn");
+    }
+    @FXML
+    void Delete(MouseEvent event) {
+        String s_entity_r = entity_row.getText();
+        String s_entity_c = entity_column.getText();
+        int i_entity_r = Integer.parseInt(s_entity_r);
+        int i_entity_c = Integer.parseInt(s_entity_c);
+        world.addEntity(i_entity_r, i_entity_c, null);
+        view.clear();
+        view.appendText(world.worldString());
+        details.clear();
+        leftStatus.setText("Deleted an entity");
+        rightStatus.setText("");
+    }
+
+    @FXML
+    void viewDetails(MouseEvent event) {
+        String s_entity_r = entity_row.getText();
+        String s_entity_c = entity_column.getText();
+        int i_entity_r = Integer.parseInt(s_entity_r);
+        int i_entity_c = Integer.parseInt(s_entity_c);
+        if (world.getEntity(i_entity_r,i_entity_c) == null) {
+            details.clear();
+            details.appendText("Null");
+        } else if (world.isHero(i_entity_c,i_entity_r)) {
+            details.clear();
+            details.appendText(world.sHero(i_entity_r,i_entity_c));
+        } else if (world.isMonster(i_entity_r, i_entity_c)) {
+            details.clear();
+            details.appendText(world.sMonster(i_entity_r,i_entity_c));
+        }
+        leftStatus.setText("");
+        rightStatus.setText("Details shown");
+    }
 
 }
